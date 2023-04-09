@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { NavBar, Hero, Sponsors, About, Collections, Creators, CTA, FAQ, Footer } from './assets/data/Exports'
 
-function App() {
+const App = () => {
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000)
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {
+        loading ?
+        <div className='loader-bg'>
+          <span className='follow-the-leader'>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </span>
+        </div>
+        :
+        <div className='app'>
+        <header data-aos="fade-in">
+          <NavBar />
+        </header>
+        <main>
+          <Hero />
+          <Sponsors />
+          <About />
+          <Collections />
+          <Creators />
+          <FAQ />
+          <CTA />
+        </main>
+        <Footer />
+        </div>
+      }
+    </>
+  )
 }
 
-export default App;
+export default App
